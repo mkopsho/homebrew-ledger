@@ -3,7 +3,7 @@ class UsersController < ApplicationController
     if logged_in?
       redirect '/recipes'
     else
-      erb :'users/homepage'
+      erb :homepage
     end
   end
 
@@ -29,6 +29,7 @@ class UsersController < ApplicationController
       session[:user_id] = user.id
       redirect '/recipes'
     else
+      flash[:error] = "That username is unavailable, please try again."
       redirect '/signup'
     end
   end
@@ -39,6 +40,7 @@ class UsersController < ApplicationController
       session[:user_id] = user.id
       redirect '/recipes'
     else
+      flash[:error] = "Invalid credentials."
       redirect '/signup'
     end
   end

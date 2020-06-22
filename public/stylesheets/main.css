@@ -1,3 +1,28 @@
+img.center {
+  display: block;
+  margin: 0 auto;
+  padding-top: 25px;
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.nav {
+  display: flex;
+  justify-content: right;
+}
+
+.nav a {
+  padding: 0px 10px 0px 10px;
+}
+
+.main {
+  display: flex;
+  justify-content: space-between
+}
+
 @media screen {
   /* --- Reset Styles --- */
   * {

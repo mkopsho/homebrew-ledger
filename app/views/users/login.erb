@@ -1,1 +1,12 @@
-User login page!
+<h2>User login page!</h2>
+
+<% if flash[:error] %>
+  <h3><%= flash[:error] %></h3>
+   <% flash.clear %>
+<% end %>
+
+<form action="/login" method="post">
+  <input type="text" name="username" placeholder="Username:" required>
+  <input type="password" name="password" placeholder="Password:" required>
+  <input type="submit" value="Log In">
+</form>

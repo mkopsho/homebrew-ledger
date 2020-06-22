@@ -1,1 +1,13 @@
-User signup page!
+<h2>User signup page!</h2>
+
+<% if flash[:error] %>
+  <h3><%= flash[:error] %></h3>
+   <% flash.clear %>
+<% end %>
+
+<form action="/signup" method="post">
+  <input type="email" name="email" placeholder="Email:" required>
+  <input type="text" name="username" placeholder="Username:" required>
+  <input type="password" name="password" placeholder="Password:" required>
+  <input type="submit" value="Sign Up">
+</form>
