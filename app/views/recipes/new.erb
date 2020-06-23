@@ -3,8 +3,8 @@
   <form method="post" action="/recipes">
     <!-- To do: Add `label for=` tags to input fields -->
     <!-- To do: Embiggen `textarea` -->
-    <p>Name:<input type="text" name="name"></p>
-    <p>Description: <input type="textarea" name="description"</p>
+    <p>Name:<input type="text" name="name" required></p>
+    <p>Description: <input type="textarea" name="description" required</p>
     <p>Ingredients:<br>
       
       <!-- To do: display a list of all available ingredients to user -->
@@ -13,5 +13,6 @@
       Name: <input type="text" name="ingredients[name]" id="ingredients[name]">Quantity: <input type="text" name="ingredients[quantity]" id="ingredients[quantity]"><br>
       
     </p>
+    <p>Public: <input type="radio" name="is_public?" value=true checked> Private: <input type="radio" name="is_public?" value=false></p>
     <input type="submit" value="Submit edits">
   </form>

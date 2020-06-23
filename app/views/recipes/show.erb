@@ -7,7 +7,16 @@
       <% end %>
   </p>
 
+  <!-- To do: revisit this (params = {"_method"=>"patch", "is_public?"=>"true", "id"=>"10"})
   <form method="post" action="/recipes/<%= @recipe.id %>">
-    <input id="hidden" type="hidden" name="_method" value="delete" />
-    <input type="submit" value="Delete recipe" />
+    <input type="hidden" name="_method" value="patch">
+    <p>Public: <input type="radio" name="is_public?" value=true <%="checked" if @recipe.is_public? == true %>></p>
+       Private: <input type="radio" name="is_public?" value=false <%="checked" if @recipe.is_public? == false %>></p>
+    <input type="submit" value="Change visibility">
+  </form> -->
+
+  <br>
+  <form method="post" action="/recipes/<%= @recipe.id %>">
+    <input id="hidden" type="hidden" name="_method" value="delete">
+    <input type="submit" value="Delete">
   </form>

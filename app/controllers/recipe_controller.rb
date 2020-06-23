@@ -15,12 +15,13 @@ class RecipesController < ApplicationController
       erb :'recipes/new'
     else
       redirect '/'
+    end
   end
 
   post '/recipes' do
     if logged_in?
       # To do: instantiate an `Ingredient` object for each ingredient listed on the form (also needs to be built correctly) and shovel into associated recipe method.
-      @recipe = Recipe.create(name: params[:name], description: params[:description], user: current_user)
+      @recipe = Recipe.create(name: params[:name], description: params[:description], is_public?: params[:is_public?], user: current_user)
       ingredient = Ingredient.create(name: params[:ingredients][:name], quantity: params[:ingredients][:quantity])
       @recipe.ingredients << ingredient
       if @recipe.save
@@ -28,9 +29,8 @@ class RecipesController < ApplicationController
       else
         redirect "/recipes/new"
       end
-      else
-        redirect '/'
-      end
+    else
+      redirect '/'
     end
   end
 
