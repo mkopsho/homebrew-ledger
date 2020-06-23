@@ -12,7 +12,7 @@ class ApplicationController < Sinatra::Base
   end
 
   error 400..510 do # Present error page for any unexpected URL.
-    @error = request[:last]
+    @error = response.status
     erb :error
   end
 
