@@ -1,5 +1,4 @@
-<h1>Your Recipe</h1>
-  <p>Name: <%= @recipe.name %></p>
+<h1><%= @recipe.name %></h1>
   <p>Description: <%= @recipe.description %></p>
   <p>Ingredients:<br>
     <% @recipe.ingredients.each do |ingredient| %>
@@ -16,7 +15,13 @@
   </form> -->
 
   <br>
-  <form method="post" action="/recipes/<%= @recipe.id %>">
-    <input id="hidden" type="hidden" name="_method" value="delete">
-    <input type="submit" value="Delete">
-  </form>
+  <% if @recipe.user == current_user %>
+    <form method="get" action="/recipes/<%= @recipe.id %>/edit">
+      <input type="submit" value="Edit">
+    </form>
+    
+    <form method="post" action="/recipes/<%= @recipe.id %>">
+      <input id="hidden" type="hidden" name="_method" value="delete">
+      <input type="submit" value="Delete">
+    </form>
+  <% end %>
