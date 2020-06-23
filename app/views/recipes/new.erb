@@ -1,1 +1,17 @@
-New recipe page!
+<h1>New Recipe</h1>
+<h2>Details</h2>
+  <form method="post" action="/recipes">
+    <!-- To do: Add `label for=` tags to input fields -->
+    <!-- To do: Embiggen `textarea` -->
+    <p>Name:<input type="text" name="name"></p>
+    <p>Description: <input type="textarea" name="description"</p>
+    <p>Ingredients:<br>
+      
+      <!-- To do: display a list of all available ingredients to user -->
+      <!-- To do: use ingredient checkboxes instead of text -->
+      <!-- To do: prevent overwriting of `params` hash for multiple impits -->
+      Name: <input type="text" name="ingredients[name]" id="ingredients[name]">Quantity: <input type="text" name="ingredients[quantity]" id="ingredients[quantity]"><br>
+      
+    </p>
+    <input type="submit" value="Submit edits">
+  </form>

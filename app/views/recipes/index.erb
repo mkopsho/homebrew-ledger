@@ -1,1 +1,17 @@
-Recipe index page!
+<h1>Recipes</h1> 
+<container>
+  <h2>Your Recipes</h2>
+  <!-- To do: Add validations and display user-owned private recipes -->
+</container>
+
+<container>
+  <h2>Public Recipes</h2>
+    <% @public_recipes.each do |recipe| %>
+    <h3><a href="/recipes/<%= recipe.id %>"><%= recipe.name %></a></h3>
+    <h4>Ingredients:</h4>
+      <% recipe.ingredients.each do |ingredient| %>
+      <p><%= ingredient.name %>: <%= ingredient.quantity %></p>
+      <% end %>
+    <!-- To do: Add recipe creator here (needs a "findable" class method) -->
+    <% end %>
+</container>

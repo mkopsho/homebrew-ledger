@@ -25,6 +25,7 @@ ActiveRecord::Schema.define(version: 2020_06_22_161025) do
     t.string "description"
     t.string "type_of"
     t.integer "user_id"
+    t.boolean "is_public?"
     t.index ["user_id"], name: "index_recipes_on_user_id"
   end
 

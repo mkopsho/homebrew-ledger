@@ -1,1 +1,22 @@
-Recipe edit page!
+<h1><%= @recipe.name %> </h1>
+<!-- To do: Prevent editing other creator's recipes -->
+
+<h2>Edit Recipe</h2>
+  <form method="post" action="/recipes/<%= @recipe.id %>">
+    <input type="hidden" name="_method" value="patch">
+    
+    <!-- To do: Add `label for=` tags to input fields -->
+    <!-- To do: Embiggen `textarea` -->
+
+    <p>Name:<input type="text" name="name" value="<%= @recipe.name %>"></p>
+    <p>Description: <input type="textarea" name="description" value="<%= @recipe.description %>"></p>
+    <p>Ingredients:<br>
+      
+      <!-- To do: display a list of all available ingredients to user -->
+      
+      <% @ingredients.each do |ingredient| %>
+        <input type="checkbox" name="ingredient[:name]" %>"><%= ingredient.name %>, Quantity: <input type="text" name="ingredient[:quantity]"><br>
+      <% end %>
+    </p>
+    <input type="submit" value="Submit edits">
+  </form>

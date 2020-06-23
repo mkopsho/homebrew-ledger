@@ -12,12 +12,13 @@ class ApplicationController < Sinatra::Base
   end
 
   error 400..510 do # Present error page for any unexpected URL.
+    @error = request[:last]
     erb :error
   end
 
   helpers do
     def logged_in?
-      !!session[:user_id]
+      !!session[:user_id] # `!!` converts value to boolean.
     end
 
     def current_user

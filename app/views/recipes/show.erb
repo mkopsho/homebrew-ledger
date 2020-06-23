@@ -1,1 +1,13 @@
-Show single recipe page!
+<h1>Your Recipe</h1>
+  <p>Name: <%= @recipe.name %></p>
+  <p>Description: <%= @recipe.description %></p>
+  <p>Ingredients:<br>
+    <% @recipe.ingredients.each do |ingredient| %>
+        Name: <%= ingredient.name %>, Quantity: <%= ingredient.quantity %>
+      <% end %>
+  </p>
+
+  <form method="post" action="/recipes/<%= @recipe.id %>">
+    <input id="hidden" type="hidden" name="_method" value="delete" />
+    <input type="submit" value="Delete recipe" />
+  </form>

@@ -5,6 +5,7 @@ class CreateRecipes < ActiveRecord::Migration[5.2]
       t.string :description
       t.string :type_of
       t.belongs_to :user
+      t.boolean :is_public?
     end
   end
 end

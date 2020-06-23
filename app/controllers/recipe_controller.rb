@@ -1,16 +1,24 @@
 class RecipesController < ApplicationController
   get '/recipes' do
-    @recipes = Recipe.all
-    erb :'recipes/index'
+    if logged_in?
+      @public_recipes = Recipe.all.select { |recipe| recipe.is_public? }
+      erb :'recipes/index'
+    else
+      erb :homepage
+    end
   end
 
   get '/recipes/new' do
+    @ingredients = Ingredient.all
     erb :'recipes/new'
   end
 
   post '/recipes' do
-    @recipe = Recipe.create(params)
-    redirect to "/recipes/#{@recipe.id}"
+    # To do: instantiate an `Ingredient` object for each ingredient listed on the form and shovel into associated recipe method.
+    @recipe = Recipe.create(name: params[:name], description: params[:description])
+    ingredient = Ingredient.create(name: params[:ingredients][:name], quantity: params[:ingredients][:quantity])
+    @recipe.ingredients << ingredient
+    redirect to "/recipes/#{recipe.id}"
   end
 
   get '/recipes/:id' do
@@ -20,6 +28,7 @@ class RecipesController < ApplicationController
 
   get '/recipes/:id/edit' do
     @recipe = Recipe.find(params[:id])
+    @ingredients = Ingredient.all
     erb :'recipes/edit'
   end
 
