@@ -7,10 +7,16 @@
     <p>Description: <input type="textarea" name="description" required</p>
     <p>Ingredients:<br>
       
-      <!-- To do: display a list of all available ingredients to user -->
-      <!-- To do: use ingredient checkboxes instead of text -->
-      <!-- To do: prevent overwriting of `params` hash for multiple impits -->
-      Name: <input type="text" name="ingredients[name]" id="ingredients[name]">Quantity: <input type="text" name="ingredients[quantity]" id="ingredients[quantity]"><br>
+      <!-- To do: prevent overwriting of `params` hash for multiple inputs (how?) -->
+
+      Name:
+      <select id="ingredients" name="ingredients">
+      <% @ingredient_names.uniq.each do |ingredient_name| %>
+        <option value="<%= ingredient_name %>"><%= ingredient_name %></option>
+      <% end %>
+      </select>
+      
+      Quantity: <input type="text" name="ingredients[name][quantity]" id="ingredients[quantity]"><br>
       
     </p>
     <p>Public: <input type="radio" name="is_public?" value=true checked> Private: <input type="radio" name="is_public?" value=false></p>

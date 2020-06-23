@@ -11,7 +11,7 @@ class RecipesController < ApplicationController
 
   get '/recipes/new' do
     if logged_in?
-      @ingredients = Ingredient.all
+      @ingredient_names = Ingredient.all.collect { |ingredient| ingredient.name }
       erb :'recipes/new'
     else
       redirect '/'
