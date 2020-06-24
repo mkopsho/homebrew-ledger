@@ -19,11 +19,19 @@ class RecipesController < ApplicationController
   end
 
   post '/recipes' do
+    binding.pry
     if logged_in?
-      # To do: instantiate an `Ingredient` object for each ingredient listed on the form (also needs to be built correctly) and shovel into associated recipe method.
       @recipe = Recipe.create(name: params[:name], description: params[:description], is_public?: params[:is_public?], user: current_user)
-      ingredient = Ingredient.create(name: params[:ingredients][:name], quantity: params[:ingredients][:quantity])
-      @recipe.ingredients << ingredient
+      names = params[:ingredients][:name]
+      amounts = params[:ingredients][:amount].reject(&:empty?) # Reject empty numbers from our form. Not pretty!
+      measures = params[:ingredients][:measure]
+      amounts = amounts.each_with_index.map { |element, index| element + measures[index].to_s } # Combine amounts and measurements arrays.
+      count = 0
+      while count < names.length do
+        ingredient = Ingredient.create(name: names[count], quantity: amounts[count])
+        @recipe.ingredients << ingredient
+        count += 1
+      end
       if @recipe.save
         redirect "/recipes/#{@recipe.id}"
       else

@@ -12,14 +12,14 @@
       <% x = 1 %>
       <% 10.times do %>
       Ingredient <%= x %>:
-      <select name="ingredients[name<%= x %>]" id="ingredient_name<%= x %>">
+      <select name="ingredients[name][]" id="ingredient_name<%= x %>">
       <option disabled selected value> -- select an ingredient -- </option>
       <% @ingredient_names.uniq.each do |ingredient_name| %>
         <option value="<%= ingredient_name %>"><%= ingredient_name %></option>
       <% end %>
       </select>
-      <input type="number" name="ingredients[amount<%= x %>]" id="ingredient_amount<%= x %>" step="0.1" placeholder="0.00">
-      <select name="ingredients[measure<%= x %>]" id="ingredient_measure<%= x %>">
+      <input type="number" name="ingredients[amount][]" id="ingredient_amount<%= x %>" step=0.1 value="nil">
+      <select name="ingredients[measure][]" id="ingredient_measure<%= x %>">
         <option disabled selected value> -- select a measurement -- </option>
         <option value="lbs">lbs</option>
         <option value="oz">oz</option>
