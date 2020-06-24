@@ -11,7 +11,8 @@ class RecipesController < ApplicationController
 
   get '/recipes/new' do
     if logged_in?
-      @ingredient_names = Ingredient.all.collect { |ingredient| ingredient.name }
+      ingredient_names = Ingredient.all.collect { |ingredient| ingredient.name }
+      @ingredient_names = ingredient_names.uniq
       erb :'recipes/new'
     else
       redirect '/'

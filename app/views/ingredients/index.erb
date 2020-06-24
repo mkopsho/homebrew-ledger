@@ -1,2 +1,21 @@
-Ingredient index page!
-<%= @ingredients %>
+<h2>Ingredients</h2>
+<h3>Grain</h3>
+<ul>
+  <% @grain_list.uniq.reject(&:empty?).each do |grain| %>
+    <li><%= grain %></li>
+  <% end %>
+</ul>
+
+<h3>Hops</h3>
+<ul>
+  <%= @hop_list.uniq.reject(&:empty?).each do |hop| %>
+    <li><%= hop %></li>
+  <% end %>
+</ul>
+
+<h3>Yeast</h3>
+<ul>
+  <%= @yeast_list.uniq.reject(&:empty?).each do |yeast| %>
+    <li><%= yeast %></li>
+  <% end %>
+</ul>
