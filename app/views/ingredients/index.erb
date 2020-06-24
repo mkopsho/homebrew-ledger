@@ -8,14 +8,14 @@
 
 <h3>Hops</h3>
 <ul>
-  <%= @hop_list.uniq.reject(&:empty?).each do |hop| %>
+  <% @hop_list.uniq.reject(&:empty?).each do |hop| %>
     <li><%= hop %></li>
   <% end %>
 </ul>
 
 <h3>Yeast</h3>
 <ul>
-  <%= @yeast_list.uniq.reject(&:empty?).each do |yeast| %>
+  <% @yeast_list.uniq.reject(&:empty?).each do |yeast| %>
     <li><%= yeast %></li>
   <% end %>
 </ul>
