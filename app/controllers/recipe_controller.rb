@@ -19,7 +19,6 @@ class RecipesController < ApplicationController
   end
 
   post '/recipes' do
-    binding.pry
     if logged_in?
       @recipe = Recipe.create(name: params[:name], description: params[:description], is_public?: params[:is_public?], user: current_user)
       names = params[:ingredients][:name]
@@ -58,7 +57,7 @@ class RecipesController < ApplicationController
   get '/recipes/:id/edit' do
     if logged_in?
       @recipe = Recipe.find_by(id: params[:id])
-      @ingredients = Ingredient.all
+      @ingredients = @recipe.ingredients
       if @recipe.user == current_user
         erb :'recipes/edit'
       else

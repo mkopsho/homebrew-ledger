@@ -1,14 +1,9 @@
 <h1>Recipes</h1> 
 <container>
   <h2>Your Recipes</h2><a class="button" href="/recipes/new">New Recipe</a><br>
-  <!-- To do: Add validations and display user-owned private recipes -->
-  <% @user_recipes.each do |recipe| %>
+    <% @user_recipes.each do |recipe| %>
     <h3><a href="/recipes/<%= recipe.id %>"><%= recipe.name %></a></h3>
-    <h4>Ingredients:</h4>
-      <% recipe.ingredients.each do |ingredient| %>
-      <p><%= ingredient.name %>: <%= ingredient.quantity %></p>
-      <% end %>
-    <!-- To do: Add recipe creator here (needs a "findable" class method) -->
+    <p>Creator: <%= recipe.user.username %></p>
     <% end %>
 </container>
 
@@ -16,10 +11,6 @@
   <h2>Public Recipes</h2>
     <% @public_recipes.each do |recipe| %>
     <h3><a href="/recipes/<%= recipe.id %>"><%= recipe.name %></a></h3>
-    <h4>Ingredients:</h4>
-      <% recipe.ingredients.each do |ingredient| %>
-      <p><%= ingredient.name %>: <%= ingredient.quantity %></p>
-      <% end %>
-    <!-- To do: Add recipe creator here (needs a "findable" class method) -->
+    <p>Creator: <%= recipe.user.username %></p>
     <% end %>
 </container>
