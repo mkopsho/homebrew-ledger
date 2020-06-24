@@ -8,12 +8,13 @@
     <p>Description: <input type="textarea" name="description" value="<%= @recipe.description %>"></p>
     <p>Ingredients:<br>
       
-      <!-- To do: display a list of all available ingredients to user -->
+      <!-- To do: preload and display a list of all available ingredients to user 
+      https://www.brewcabin.com/malted-barley/ -->
       
-      <!-- <% @ingredients.each do |ingredient| %>
-        <input type="checkbox" name="ingredient[:name]" %><%= ingredient.name %>
-        <input type="text" name="ingredient[quantity]" id="ingredient_quantity" value="<%= ingredient.quantity %>">
+      <% @ingredients.each do |ingredient| %>
+        <input type="text" name="ingredient[name][]" value=<%= ingredient.name %>>
+        <input type="text" name="ingredient[quantity][]" id="ingredient_quantity" value="<%= ingredient.quantity %>">
         <br>
-      <% end %> -->
+      <% end %>
     <input type="submit" value="Submit edits">
   </form>

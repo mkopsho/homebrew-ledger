@@ -70,6 +70,7 @@ class RecipesController < ApplicationController
   end
 
   patch '/recipes/:id' do
+    binding.pry
     if logged_in?
       recipe = Recipe.find_by(id: params[:id])
       recipe.update(name: params[:name], description: params[:description])

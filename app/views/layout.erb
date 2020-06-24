@@ -20,19 +20,23 @@
   </head>
   <body>
     <div class="wrapper">
-      <container>
-        <a class="button" href="/signup">Sign Up</a>
-      </container>
-      <container>
-        <a class="button" href="/login">Log In</a>
-      </container>
+      <% if !logged_in? %>
+        <container>
+          <a class="button" href="/signup">Sign Up</a>
+        </container>
+        <container>
+          <a class="button" href="/login">Log In</a>
+        </container>
+      <% end %>
 
         <%= yield %>
 
       <footer class="branding">
         <small>&copy; 2020 <strong>Homebrew Ledger</strong></small>
-        
-        <!-- Debug, remove -->
+        <br>
+        <% if logged_in? %>
+        <small>Logged in as <%= current_user.username %> | </small>
+        <% end %>
         <small><a href="/logout">Log Out</a></small>
       </footer>
     </div>
