@@ -20,7 +20,7 @@ class RecipesController < ApplicationController
   end
 
   post '/recipes' do
-    if logged_in?
+    if logged_in? recipe.user == current_user
       @recipe = Recipe.create(name: params[:name], description: params[:description], is_public?: params[:is_public?], user: current_user)
 
       names = params[:ingredients][:name]
@@ -47,7 +47,7 @@ class RecipesController < ApplicationController
   get '/recipes/:id' do
     if logged_in?
       @recipe = Recipe.find_by(id: params[:id])
-      if @recipe.is_public? == true || @recipe.user == current_user
+      if @recipe && (@recipe.is_public? == true || @recipe.user == current_user)
         erb :'recipes/show'
       else
         redirect '/recipes'
@@ -60,6 +60,9 @@ class RecipesController < ApplicationController
   get '/recipes/:id/edit' do
     if logged_in?
       @recipe = Recipe.find_by(id: params[:id])
+      3.times do
+        @recipe.ingredients.build
+      end
       @ingredients = @recipe.ingredients
       if @recipe.user == current_user
         erb :'recipes/edit'
@@ -73,7 +76,6 @@ class RecipesController < ApplicationController
   end
 
   patch '/recipes/:id' do
-    binding.pry
     if logged_in?
       recipe = Recipe.find_by(id: params[:id])
       recipe.update(name: params[:name], description: params[:description])
@@ -88,7 +90,7 @@ class RecipesController < ApplicationController
         count += 1
       end
 
-      if recipe.save && recipe.user == current_user
+      if recipe.save
         redirect "/recipes/#{recipe.id}"
       else
         # To do: create/expose flash message about not "owning" the recipe

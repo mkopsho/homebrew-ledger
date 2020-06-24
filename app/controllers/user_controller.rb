@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  # To do: Add 'show' route for personal homepage
   get '/' do
     if logged_in?
       redirect '/recipes'
