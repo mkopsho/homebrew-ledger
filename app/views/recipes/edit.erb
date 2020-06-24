@@ -1,7 +1,7 @@
 <h1><%= @recipe.name %> </h1>
 <h2>Edit Recipe</h2>
   <form method="post" action="/recipes/<%= @recipe.id %>">
-    <input type="hidden" name="_method" value="patch">
+    <input id="hidden" type="hidden" name="_method" value="patch">
     <!-- To do: Add `label for=` tags to input fields -->
     <!-- To do: Embiggen `textarea` -->
     <p>Name:<input type="text" name="name" value="<%= @recipe.name %>"></p>
@@ -10,17 +10,10 @@
       
       <!-- To do: display a list of all available ingredients to user -->
       
-      <% @ingredients.each do |ingredient| %>
+      <!-- <% @ingredients.each do |ingredient| %>
         <input type="checkbox" name="ingredient[:name]" %><%= ingredient.name %>
-        <input type="text" name="ingredients[quantity]" id="ingredient_quantity" value="<%= ingredient.quantity %>">
+        <input type="text" name="ingredient[quantity]" id="ingredient_quantity" value="<%= ingredient.quantity %>">
         <br>
-        <!-- <select name="ingredients[measure][]" id="ingredient_measure">
-          <option disabled selected value> -- select a measurement -- </option>
-          <option value="lbs">lbs</option>
-          <option value="oz">oz</option>
-          <option value="kg">kg</option>
-          <option value="g">g</option>
-        </select><br> -->
-      <% end %>
+      <% end %> -->
     <input type="submit" value="Submit edits">
   </form>

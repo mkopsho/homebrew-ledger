@@ -71,10 +71,10 @@ class RecipesController < ApplicationController
 
   patch '/recipes/:id' do
     if logged_in?
-      @recipe = Recipe.find_by(id: params[:id])
-      @recipe.update(params)
-      if @recipe.user == current_user
-        redirect "/recipes/#{@recipe.id}"
+      recipe = Recipe.find_by(id: params[:id])
+      recipe.update(name: params[:name], description: params[:description])
+      if recipe.user == current_user
+        redirect "/recipes/#{recipe.id}"
       else
         # To do: create/expose flash message about not "owning" the recipe
         redirect '/recipes'
@@ -86,9 +86,9 @@ class RecipesController < ApplicationController
 
   delete '/recipes/:id' do
     if logged_in?
-      @recipe = Recipe.find_by(id: params[:id])
-      if @recipe.user == current_user
-        @recipe.destroy
+      recipe = Recipe.find_by(id: params[:id])
+      if recipe.user == current_user
+        recipe.destroy
         redirect '/recipes'
       else
         # To do: create/expose flash message about not "owning" the recipe
