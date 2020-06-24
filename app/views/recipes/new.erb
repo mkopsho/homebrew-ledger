@@ -3,22 +3,32 @@
   <form method="post" action="/recipes">
     <!-- To do: Add `label for=` tags to input fields -->
     <!-- To do: Embiggen `textarea` -->
-    <p>Name:<input type="text" name="name" required></p>
-    <p>Description: <input type="textarea" name="description" required</p>
-    <p>Ingredients:<br>
-      
-      <!-- To do: prevent overwriting of `params` hash for multiple inputs (how?) -->
-
-      Name:
-      <select id="ingredients" name="ingredients">
+    <!-- To do: Revisit form field spacing -->
+    <strong><p>Name:<input type="text" name="name" required></p></strong>
+    <strong><p>Description: <input type="textarea" name="description" required</p></strong>
+    <strong><p>Ingredients:</strong>
+      <br>
+      <br>
+      <% x = 1 %>
+      <% 10.times do %>
+      Ingredient <%= x %>:
+      <select name="ingredients[name<%= x %>]" id="ingredient_name<%= x %>">
+      <option disabled selected value> -- select an ingredient -- </option>
       <% @ingredient_names.uniq.each do |ingredient_name| %>
         <option value="<%= ingredient_name %>"><%= ingredient_name %></option>
       <% end %>
       </select>
+      <input type="number" name="ingredients[amount<%= x %>]" id="ingredient_amount<%= x %>" step="0.1" placeholder="0.00">
+      <select name="ingredients[measure<%= x %>]" id="ingredient_measure<%= x %>">
+        <option disabled selected value> -- select a measurement -- </option>
+        <option value="lbs">lbs</option>
+        <option value="oz">oz</option>
+        <option value="kg">kg</option>
+        <option value="g">g</option>
+      </select><br>
+      <% x += 1 %>
+      <% end %>
       
-      Quantity: <input type="text" name="ingredients[name][quantity]" id="ingredients[quantity]"><br>
-      
-    </p>
-    <p>Public: <input type="radio" name="is_public?" value=true checked> Private: <input type="radio" name="is_public?" value=false></p>
-    <input type="submit" value="Submit edits">
+      <p>Public: <input type="radio" name="is_public?" value=true checked> Private: <input type="radio" name="is_public?" value=false></p>
+    <input type="submit" value="Save Recipe">
   </form>
