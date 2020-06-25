@@ -1,16 +1,16 @@
 class UsersController < ApplicationController
-  # To do: Add 'show' route for personal homepage
   get '/' do
     if logged_in?
-      redirect '/recipes'
+      @user = current_user
+      erb :'users/homepage'
     else
       erb :homepage
     end
   end
-
+  
   get '/signup' do
     if logged_in?
-      redirect '/recipes'
+      redirect '/'
     else
       erb :'users/signup'
     end
@@ -18,7 +18,7 @@ class UsersController < ApplicationController
 
   get '/login' do
     if logged_in?
-      redirect '/recipes'
+      redirect '/'
     else
       erb :'users/login'
     end
@@ -28,7 +28,7 @@ class UsersController < ApplicationController
     user = User.new(params)
     if user.save # false if this doesn't satisfy the validators defined in the `User` model
       session[:user_id] = user.id
-      redirect '/recipes'
+      redirect '/'
     else
       flash[:error] = "That username is unavailable, please try again."
       redirect '/signup'
@@ -39,7 +39,7 @@ class UsersController < ApplicationController
     user = User.find_by(username: params[:username])
     if user && user.authenticate(params[:password])
       session[:user_id] = user.id
-      redirect '/recipes'
+      redirect '/'
     else
       flash[:error] = "Invalid credentials."
       redirect '/login'

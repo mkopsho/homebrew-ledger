@@ -1,7 +1,8 @@
 <h1>Recipes</h1> 
 <container>
-  <h2>Public Recipes</h2>
-    <% @public_recipes.each do |recipe| %>
+  <h2>Your Recipes | <a href="/recipes">View All Public Recipes</a></h2>
+  <a class="button" href="/recipes/new">New Recipe</a><br>
+    <% @user.recipes.each do |recipe| %>
     <h3><a href="/recipes/<%= recipe.id %>"><%= recipe.name %></a></h3>
     <p>Creator: <%= recipe.user.username %></p>
     <% end %>

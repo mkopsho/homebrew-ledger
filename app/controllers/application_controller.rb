@@ -13,9 +13,22 @@ class ApplicationController < Sinatra::Base
     register Sinatra::Flash
   end
 
-  error 400..510 do # Present error page for any unexpected URL.
+  get '/' do
+    erb :homepage
+  end
+
+  not_found do
     @error = response.status
     erb :error
+  end
+
+  #error 400..510 do # Present error page for any unexpected URL.
+  #  @error = response.status
+  #  erb :error
+  #end
+
+  error ActiveRecord::RecordNotFound do
+    redirect '/'
   end
 
   helpers do
