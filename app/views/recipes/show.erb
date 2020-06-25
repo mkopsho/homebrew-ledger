@@ -13,12 +13,11 @@
         <%= ingredient.name %>: <%= ingredient.quantity %><br>
       <% end %>
   </p>
-  <br>
   <% if @recipe.user == current_user %>
     <form method="get" action="/recipes/<%= @recipe.id %>/edit">
       <input type="submit" value="Edit">
     </form>
-    
+    <br>
     <form method="post" action="/recipes/<%= @recipe.id %>">
       <input id="hidden" type="hidden" name="_method" value="delete">
       <input type="submit" value="Delete">
