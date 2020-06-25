@@ -42,7 +42,7 @@ class UsersController < ApplicationController
       redirect '/recipes'
     else
       flash[:error] = "Invalid credentials."
-      redirect '/signup'
+      redirect '/login'
     end
   end
 

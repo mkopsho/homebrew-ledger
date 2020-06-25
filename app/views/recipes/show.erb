@@ -1,19 +1,17 @@
 <h1><%= @recipe.name %></h1>
-  <p>Description: <%= @recipe.description %></p>
+  <p>Description: <%= @recipe.description %><br>
+  Creator: <%= @recipe.user.username %><br>
+  Visibility: 
+    <% if @recipe.is_public? == true %>
+    <%= "Public" %>
+    <% else %>
+    <%= "Private" %>
+    <% end %></p>
   <p><strong>Ingredients:</strong><br>
     <% @recipe.ingredients.each do |ingredient| %>
         <%= ingredient.name %>: <%= ingredient.quantity %><br>
       <% end %>
   </p>
-
-  <!-- To do: revisit this (params = {"_method"=>"patch", "is_public?"=>"true", "id"=>"10"})
-  <form method="post" action="/recipes/<%= @recipe.id %>">
-    <input type="hidden" name="_method" value="patch">
-    <p>Public: <input type="radio" name="is_public?" value=true <%="checked" if @recipe.is_public? == true %>></p>
-       Private: <input type="radio" name="is_public?" value=false <%="checked" if @recipe.is_public? == false %>></p>
-    <input type="submit" value="Change visibility">
-  </form> -->
-
   <br>
   <% if @recipe.user == current_user %>
     <form method="get" action="/recipes/<%= @recipe.id %>/edit">

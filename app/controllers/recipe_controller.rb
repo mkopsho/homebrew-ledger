@@ -20,7 +20,7 @@ class RecipesController < ApplicationController
   end
 
   post '/recipes' do
-    if logged_in? recipe.user == current_user
+    if logged_in?
       @recipe = Recipe.create(name: params[:name], description: params[:description], is_public?: params[:is_public?], user: current_user)
 
       names = params[:ingredients][:name]
@@ -78,16 +78,20 @@ class RecipesController < ApplicationController
   patch '/recipes/:id' do
     if logged_in?
       recipe = Recipe.find_by(id: params[:id])
-      recipe.update(name: params[:name], description: params[:description])
-      recipe.ingredients.clear
+      if recipe.user == current_user
+        recipe.update(name: params[:name], description: params[:description], is_public?: params[:is_public?])
+        recipe.ingredients.clear
 
-      ingredient_names = params[:ingredient][:name].reject(&:empty?)
-      ingredient_quantities = params[:ingredient][:quantity].reject(&:empty?)
-      count = 0
-      while count < ingredient_names.length do
-        ingredient = Ingredient.create(name: ingredient_names[count], quantity: ingredient_quantities[count])
-        recipe.ingredients << ingredient
-        count += 1
+        ingredient_names = params[:ingredient][:name].reject(&:empty?)
+        ingredient_quantities = params[:ingredient][:quantity].reject(&:empty?)
+        count = 0
+        while count < ingredient_names.length do
+          ingredient = Ingredient.create(name: ingredient_names[count], quantity: ingredient_quantities[count])
+          recipe.ingredients << ingredient
+          count += 1
+        end
+      else
+        redirect '/recipes'
       end
 
       if recipe.save
