@@ -18,8 +18,7 @@
         <br>
       <% end %>
       <p>Public: <input type="radio" name="is_public?" value=true <%='checked' if @recipe.is_public? %>>
-         Private: <input type="radio" name="is_public?" value=false <%='checked' if @recipe.is_public? %></p>
-      <br>
+         Private: <input type="radio" name="is_public?" value=false <%='checked' if !@recipe.is_public? %>></p>
       <br>
     <input type="submit" value="Submit edits">
   </form>

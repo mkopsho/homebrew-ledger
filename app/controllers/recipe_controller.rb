@@ -26,12 +26,11 @@ class RecipesController < ApplicationController
       names = params[:ingredients][:name]
       amounts = params[:ingredients][:amount].reject(&:empty?) # Reject empty numbers from our form. Can I catch this in the form itself?
       measures = params[:ingredients][:measure]
-      amounts = amounts.each_with_index.map { |element, index| element + measures[index].to_s } # Combine amounts and measurements arrays.
+      amounts = amounts.each_with_index.map { |element, index| element + measures[index].to_s } # Combine amounts and measurements arrays at same index.
 
       count = 0
       while count < names.length do
-        ingredient = Ingredient.create(name: names[count], quantity: amounts[count])
-        @recipe.ingredients << ingredient
+        ingredient = Ingredient.create(name: names[count], quantity: amounts[count], recipe_id: @recipe.id)
         count += 1
       end
       
@@ -40,6 +39,7 @@ class RecipesController < ApplicationController
       else
         redirect "/recipes/new"
       end
+
     else
       redirect '/'
     end
@@ -61,9 +61,11 @@ class RecipesController < ApplicationController
   get '/recipes/:id/edit' do
     if logged_in?
       @recipe = Recipe.find_by(id: params[:id])
+      
       3.times do
-        @recipe.ingredients.build
+        @recipe.ingredients.build # Whoa!
       end
+      
       @ingredients = @recipe.ingredients
       if @recipe.user == current_user
         erb :'recipes/edit'
@@ -79,6 +81,7 @@ class RecipesController < ApplicationController
   patch '/recipes/:id' do
     if logged_in?
       recipe = Recipe.find_by(id: params[:id])
+      
       if recipe.user == current_user
         recipe.update(name: params[:name], description: params[:description], style: params[:style], is_public?: params[:is_public?])
         recipe.ingredients.clear
@@ -88,8 +91,8 @@ class RecipesController < ApplicationController
 
         count = 0
         while count < ingredient_names.length do
-          ingredient = Ingredient.create(name: ingredient_names[count], quantity: ingredient_quantities[count])
-          recipe.ingredients << ingredient
+          ingredient = Ingredient.create(name: ingredient_names[count], quantity: ingredient_quantities[count], recipe_id: recipe.id)
+          #recipe.ingredients << ingredient
           count += 1
         end
 
@@ -103,6 +106,7 @@ class RecipesController < ApplicationController
         # To do: create/expose flash message about not "owning" the recipe
         redirect '/recipes'
       end
+    
     else
       redirect '/'
     end
