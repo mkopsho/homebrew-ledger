@@ -27,6 +27,7 @@ class RecipesController < ApplicationController
       amounts = params[:ingredients][:amount].reject(&:empty?) # Reject empty numbers from our form. Can I catch this in the form itself?
       measures = params[:ingredients][:measure]
       amounts = amounts.each_with_index.map { |element, index| element + measures[index].to_s } # Combine amounts and measurements arrays.
+      
       count = 0
       while count < names.length do
         ingredient = Ingredient.create(name: names[count], quantity: amounts[count])
@@ -84,12 +85,14 @@ class RecipesController < ApplicationController
 
         ingredient_names = params[:ingredient][:name].reject(&:empty?)
         ingredient_quantities = params[:ingredient][:quantity].reject(&:empty?)
+
         count = 0
         while count < ingredient_names.length do
           ingredient = Ingredient.create(name: ingredient_names[count], quantity: ingredient_quantities[count])
           recipe.ingredients << ingredient
           count += 1
         end
+
       else
         redirect '/recipes'
       end

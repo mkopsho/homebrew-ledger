@@ -3,7 +3,7 @@ class CreateRecipes < ActiveRecord::Migration[5.2]
     create_table :recipes do |t|
       t.string :name
       t.string :description
-      t.string :type_of
+      t.string :style
       t.belongs_to :user
       t.boolean :is_public?
     end

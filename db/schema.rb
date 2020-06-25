@@ -23,7 +23,7 @@ ActiveRecord::Schema.define(version: 2020_06_22_161025) do
   create_table "recipes", force: :cascade do |t|
     t.string "name"
     t.string "description"
-    t.string "type_of"
+    t.string "style"
     t.integer "user_id"
     t.boolean "is_public?"
     t.index ["user_id"], name: "index_recipes_on_user_id"
