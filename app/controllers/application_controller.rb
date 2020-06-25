@@ -18,6 +18,11 @@ class ApplicationController < Sinatra::Base
     erb :error
   end
 
+  error 400..510 do
+    @error = response.status
+    erb :error
+  end
+
   error ActiveRecord::RecordNotFound do
     redirect '/'
   end
