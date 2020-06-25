@@ -1,9 +1,11 @@
 <h1>Recipes</h1> 
 <container>
-  <h2>Your Recipes | <a href="/recipes">View All Public Recipes</a></h2>
-  <form method="get" action="/recipes/new">
-    <input type="submit" value="New Recipe">
-  </form>
+  <h2>Your Recipes | <a href="/recipes">View Community Recipes</a></h2>
+  <a href="/recipes/new" class="button is-light">
+    New Recipe
+  </a>
+  <br>
+  <br>
     <% @user.recipes.each do |recipe| %>
     <h3><a href="/recipes/<%= recipe.id %>"><%= recipe.name %></a></h3>
     <p>Creator: <%= recipe.user.username %></p>

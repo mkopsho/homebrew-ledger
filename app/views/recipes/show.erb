@@ -1,25 +1,37 @@
 <h1><%= @recipe.name %></h1>
-  <p>Style: <%= @recipe.style %><br>
-    Description: <%= @recipe.description %><br>
-    Creator: <%= @recipe.user.username %><br>
-    Visibility: 
+  <h2>View Recipe</h2>
+  <% if @recipe.user == current_user %>
+    <div>
+      <div style="float: left; width: 100px"> 
+        <form method="get" action="/recipes/<%= @recipe.id %>/edit">
+          <input type="submit" class="button is-light" value="Edit">
+        </form>
+      </div>
+      <div style="float: left; width: 100px"> 
+        <form method="post" action="/recipes/<%= @recipe.id %>">
+          <input id="hidden" type="hidden" name="_method" value="delete">
+          <input type="submit" class="button is-danger" value="Delete">
+        </form>
+      </div>
+    </div>
+  <% end %>
+
+  <br>
+  <br>
+  <br>
+  <br>
+
+  <strong><p>Style: <%= @recipe.style %></p></strong>
+  <strong><p>Description: <%= @recipe.description %></p></strong>
+  <strong><p>Creator: <%= @recipe.user.username %></p></strong>
+  <strong><p>Visibility:
     <% if @recipe.is_public? == true %>
       <%= "Public" %>
       <% else %>
       <%= "Private" %>
-    <% end %></p>
-  <p><strong>Ingredients:</strong><br>
+    <% end %></p></strong>
+    <strong><p>Ingredients:</p></strong>
     <% @recipe.ingredients.each do |ingredient| %>
         <%= ingredient.name %>: <%= ingredient.quantity %><br>
       <% end %>
-  </p>
-  <% if @recipe.user == current_user %>
-    <form method="get" action="/recipes/<%= @recipe.id %>/edit">
-      <input type="submit" value="Edit">
-    </form>
-    <br>
-    <form method="post" action="/recipes/<%= @recipe.id %>">
-      <input id="hidden" type="hidden" name="_method" value="delete">
-      <input type="submit" value="Delete">
-    </form>
-  <% end %>
+      <br>

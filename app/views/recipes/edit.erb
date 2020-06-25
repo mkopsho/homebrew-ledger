@@ -3,15 +3,13 @@
   <form method="post" action="/recipes/<%= @recipe.id %>">
     <input id="hidden" type="hidden" name="_method" value="patch">
     <!-- To do: Embiggen `textarea` -->
-    <label for="name"><p><strong>Name: </label>
-      <input type="text" name="name" id="name" value="<%= @recipe.name %>"></strong></p>
-    <label for="style"><p><strong>Style<a href="https://www.homebrewersassociation.org/from-the-director/2018-national-homebrew-competition-styles/">[*]</a>: </label>
-      <input type="text" name="style" id="style" value="<%= @recipe.style %>"></strong></p>
+    <label for="name"><strong><p>Name: </label>
+      <input type="text" name="name" id="name" value="<%= @recipe.name %>"></p></strong>
+    <label for="style"><strong><p>Style<a href="https://www.homebrewersassociation.org/from-the-director/2018-national-homebrew-competition-styles/">[*]</a>: </label>
+      <input type="text" name="style" id="style" value="<%= @recipe.style %>"></p></strong>
     <label for="description"><strong><p>Description: </label>
-      <input type="textarea" name="description" id="description" value="<%= @recipe.description %>"></strong></p>
-    <strong>Ingredients: </strong>
-      <br>
-      <br>
+      <input type="textarea" name="description" id="description" value="<%= @recipe.description %>"></p></strong>
+    <strong><p>Ingredients: </p></strong>
       <!-- To do: preload and display a list of all available ingredients to user 
       https://www.brewcabin.com/malted-barley/ -->
       

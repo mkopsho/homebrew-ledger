@@ -1,7 +1,6 @@
 class RecipesController < ApplicationController
   get '/recipes' do
     if logged_in?
-      @user_recipes = Recipe.all.select { |recipe| recipe.user == current_user }
       @public_recipes = Recipe.all.select { |recipe| recipe.is_public? }
       erb :'recipes/index'
     else

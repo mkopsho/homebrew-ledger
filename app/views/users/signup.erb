@@ -1,8 +1,11 @@
-<h2>User signup page!</h2>
+<h1>Sign Up</h1>
+<br>
 
 <% if flash[:error] %>
-  <h3><%= flash[:error] %></h3>
-   <% flash.clear %>
+  <div class="notification is-danger">
+    <%= flash[:error] %>
+  </div>
+  <% flash.clear %>
 <% end %>
 
 <form action="/signup" method="post">

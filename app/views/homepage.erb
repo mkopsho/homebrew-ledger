@@ -1,2 +1,9 @@
+<h1>Homebrew Ledger</h1>
 <h2>Welcome to Homebrew Ledger!</h2>
 <p>Here is where you can create and store your homebrew recipes.</p>
+<% if !logged_in? %>
+  <a class="button is-primary" href="/signup">Sign Up</a>
+  <a class="button is-primary is-outlined" href="/login">Log In</a>
+  <br>
+  <br>
+<% end %>

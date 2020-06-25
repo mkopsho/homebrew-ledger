@@ -1,2 +1,11 @@
-<h2>Turn back! You got a <%= @error %>.</h2>
-<p>Click one of the above links to sign up or log in. Or click <a href='/'>here</a> to get to the homepage.</p>
+<h1>You've strayed too far.</h1>
+<br>
+
+<% if @error %>
+  <div class="notification is-danger">
+    You have stolen a <%= @error %>. Give it back.
+  </div>
+  <% flash.clear %>
+<% end %>
+
+<p>Click <a href='/'>here</a> to get to the homepage.</p>

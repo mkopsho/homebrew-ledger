@@ -41,7 +41,7 @@ class UsersController < ApplicationController
       session[:user_id] = user.id
       redirect '/'
     else
-      flash[:error] = "Invalid credentials."
+      flash[:error] = "Invalid credentials, please try again."
       redirect '/login'
     end
   end

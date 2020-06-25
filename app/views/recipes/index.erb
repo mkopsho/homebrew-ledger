@@ -1,6 +1,11 @@
 <h1>Recipes</h1> 
 <container>
-  <h2>Public Recipes</h2>
+  <h2>Community Recipes | <a href="/">View Your Recipes</a></h2>
+  <a href="/recipes/new" class="button is-light">
+    New Recipe
+  </a>
+  <br>
+  <br>
     <% @public_recipes.each do |recipe| %>
     <h3><a href="/recipes/<%= recipe.id %>"><%= recipe.name %></a></h3>
     <p>Creator: <%= recipe.user.username %></p>
