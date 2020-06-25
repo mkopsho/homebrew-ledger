@@ -1,11 +1,12 @@
 <h1><%= @recipe.name %></h1>
-  <p>Description: <%= @recipe.description %><br>
-  Creator: <%= @recipe.user.username %><br>
-  Visibility: 
+  <p>Style: <%= @recipe.style %><br>
+    Description: <%= @recipe.description %><br>
+    Creator: <%= @recipe.user.username %><br>
+    Visibility: 
     <% if @recipe.is_public? == true %>
-    <%= "Public" %>
-    <% else %>
-    <%= "Private" %>
+      <%= "Public" %>
+      <% else %>
+      <%= "Private" %>
     <% end %></p>
   <p><strong>Ingredients:</strong><br>
     <% @recipe.ingredients.each do |ingredient| %>

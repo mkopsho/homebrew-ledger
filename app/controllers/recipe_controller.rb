@@ -21,13 +21,13 @@ class RecipesController < ApplicationController
 
   post '/recipes' do
     if logged_in?
-      @recipe = Recipe.create(name: params[:name], description: params[:description], is_public?: params[:is_public?], user: current_user)
+      @recipe = Recipe.create(name: params[:name], description: params[:description], style: params[:style], is_public?: params[:is_public?], user: current_user)
 
       names = params[:ingredients][:name]
       amounts = params[:ingredients][:amount].reject(&:empty?) # Reject empty numbers from our form. Can I catch this in the form itself?
       measures = params[:ingredients][:measure]
       amounts = amounts.each_with_index.map { |element, index| element + measures[index].to_s } # Combine amounts and measurements arrays.
-      
+
       count = 0
       while count < names.length do
         ingredient = Ingredient.create(name: names[count], quantity: amounts[count])
@@ -80,7 +80,7 @@ class RecipesController < ApplicationController
     if logged_in?
       recipe = Recipe.find_by(id: params[:id])
       if recipe.user == current_user
-        recipe.update(name: params[:name], description: params[:description], is_public?: params[:is_public?])
+        recipe.update(name: params[:name], description: params[:description], style: params[:style], is_public?: params[:is_public?])
         recipe.ingredients.clear
 
         ingredient_names = params[:ingredient][:name].reject(&:empty?)
