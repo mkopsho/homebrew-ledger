@@ -11,7 +11,11 @@ Navigate to the `homebrew-ledger` directory and run:
 ```
 bundle install
 ```
-To load the app with the common beer ingredients, run:
+To initialize the database, run:
+```
+rake db:migrate
+```
+To load the database with some common beer ingredients, run:
 ```
 rake db:load
 ```
