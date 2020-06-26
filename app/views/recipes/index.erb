@@ -1,4 +1,13 @@
-<h1>Recipes</h1> 
+<h1>Recipes</h1>
+<br>
+
+<% if flash[:error] %>
+  <div class="notification is-warning">
+    <%= flash[:error] %>
+  </div>
+  <% flash.clear %>
+<% end %>
+
 <container>
   <h2>Community Recipes | <a href="/">View Your Recipes</a></h2>
   <a href="/recipes/new" class="button is-light">

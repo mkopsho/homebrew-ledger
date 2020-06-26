@@ -7,7 +7,7 @@
     
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.0/css/bulma.min.css">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="/stylesheets/main.css">
+    <link rel="stylesheet" href="/stylesheets/main.css?=121213">
 
   </head>
   <body>
@@ -23,6 +23,7 @@
           <%= yield %>
 
           <footer class="branding">
+            <br>
             <% if logged_in? %>
             <small>Logged in as <%= current_user.username %> | </small>
             <small><a href="/logout">Log Out</a></small>

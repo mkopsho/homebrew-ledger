@@ -32,8 +32,7 @@ img.center {
 
   /* --- Welcome Page Styles --- */
   body {
-    height: 100vh;
-    background-color: rgb(33, 36, 37);
+    background-color: rgb(48, 55, 58);
     color: rgb(224, 213, 213);
     font-family: sans-serif;
     line-height: 18px;
@@ -66,7 +65,7 @@ img.center {
     float: left;
     width: 60%; /* 480px / 800px */
   }
-  
+
   footer.branding {
     margin-top: 20px;
     padding-top: 20px;

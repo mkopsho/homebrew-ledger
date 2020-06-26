@@ -60,16 +60,15 @@ class RecipesController < ApplicationController
   get '/recipes/:id/edit' do
     if logged_in?
       @recipe = Recipe.find_by(id: params[:id])
-      
       3.times do
-        @recipe.ingredients.build # Whoa!
+        @recipe.ingredients.build # Returns new objects that are empty and not yet saved!
       end
-      
       @ingredients = @recipe.ingredients
+
       if @recipe.user == current_user
         erb :'recipes/edit'
       else
-        # To do: create/expose flash message about not "owning" the recipe
+        flash[:error] = "You do not have the correct permissions to do that."
         redirect '/recipes'
       end
     else
@@ -91,7 +90,6 @@ class RecipesController < ApplicationController
         count = 0
         while count < ingredient_names.length do
           ingredient = Ingredient.create(name: ingredient_names[count], quantity: ingredient_quantities[count], recipe_id: recipe.id)
-          #recipe.ingredients << ingredient
           count += 1
         end
 
@@ -102,7 +100,7 @@ class RecipesController < ApplicationController
       if recipe.save
         redirect "/recipes/#{recipe.id}"
       else
-        # To do: create/expose flash message about not "owning" the recipe
+        flash[:error] = "You do not have the correct permissions to do that."
         redirect '/recipes'
       end
     
@@ -118,7 +116,7 @@ class RecipesController < ApplicationController
         recipe.destroy
         redirect '/recipes'
       else
-        # To do: create/expose flash message about not "owning" the recipe
+        flash[:error] = "You do not have the correct permissions to do that."
         redirect '/recipes'
       end
     else

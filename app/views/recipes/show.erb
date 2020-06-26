@@ -1,26 +1,6 @@
 <h1><%= @recipe.name %></h1>
+<br>
   <h2>View Recipe</h2>
-  <% if @recipe.user == current_user %>
-    <div>
-      <div style="float: left; width: 100px"> 
-        <form method="get" action="/recipes/<%= @recipe.id %>/edit">
-          <input type="submit" class="button is-light" value="Edit">
-        </form>
-      </div>
-      <div style="float: left; width: 100px"> 
-        <form method="post" action="/recipes/<%= @recipe.id %>">
-          <input id="hidden" type="hidden" name="_method" value="delete">
-          <input type="submit" class="button is-danger" value="Delete">
-        </form>
-      </div>
-    </div>
-  <% end %>
-
-  <br>
-  <br>
-  <br>
-  <br>
-
   <strong><p>Style: <%= @recipe.style %></p></strong>
   <strong><p>Description: <%= @recipe.description %></p></strong>
   <strong><p>Creator: <%= @recipe.user.username %></p></strong>
@@ -35,3 +15,19 @@
         <%= ingredient.name %>: <%= ingredient.quantity %><br>
       <% end %>
       <br>
+      
+<% if @recipe.user == current_user %>
+  <div>
+    <div style="float: left; width: 100px"> 
+      <form method="get" action="/recipes/<%= @recipe.id %>/edit">
+        <input type="submit" class="button is-light" value="Edit">
+      </form>
+    </div>
+    <div style="float: left; width: 100px"> 
+      <form method="post" action="/recipes/<%= @recipe.id %>">
+        <input id="hidden" type="hidden" name="_method" value="delete">
+        <input type="submit" class="button is-danger" value="Delete">
+      </form>
+    </div>
+  </div>
+<% end %>

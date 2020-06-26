@@ -26,7 +26,7 @@ class UsersController < ApplicationController
 
   post '/signup' do
     user = User.new(params)
-    if user.save # false if this doesn't satisfy the validators defined in the `User` model
+    if user.save # `false` if this doesn't satisfy the validators defined in the `User` model
       session[:user_id] = user.id
       redirect '/'
     else
