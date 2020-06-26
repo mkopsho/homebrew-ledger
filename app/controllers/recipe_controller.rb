@@ -10,8 +10,19 @@ class RecipesController < ApplicationController
 
   get '/recipes/new' do
     if logged_in?
-      ingredient_names = Ingredient.all.collect { |ingredient| ingredient.name }
-      @ingredient_names = ingredient_names.uniq
+      ingredients = Ingredient.all
+      grains = ingredients.select { |ingredient| ingredient.type_of == "grain" }
+      hops = ingredients.select { |ingredient| ingredient.type_of == "hops" }
+      yeast = ingredients.select { |ingredient| ingredient.type_of == "yeast" }
+      
+      grains = grains.map { |grain| grain.name }
+      hops = hops.map { |hop| hop.name }
+      yeast = yeast.map { |yeast| yeast.name }
+
+      @grains = grains.uniq
+      @hops = hops.uniq
+      @yeast = yeast.uniq
+
       erb :'recipes/new'
     else
       redirect '/'

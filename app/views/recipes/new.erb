@@ -9,18 +9,27 @@
     <label for="description"><strong><p>Description: </p></strong></label>
       <textarea rows="4" cols="50" name="description" id="description" required></textarea><br><br>
     <strong><p>Ingredients:</p></strong>
-      
-      <!-- To do: preload and display a list of all available ingredients to user 
-      https://www.brewcabin.com/malted-barley/ -->
 
       <% x = 1 %>
       <% 10.times do %>
       Ingredient <%= x %>:
       <select name="ingredients[name][]" id="ingredient_name<%= x %>">
       <option disabled selected value> -- select an ingredient -- </option>
-      <% @ingredient_names.uniq.each do |ingredient_name| %>
-        <option value="<%= ingredient_name %>"><%= ingredient_name %></option>
-      <% end %>
+      <optgroup label="Grains">
+        <% @grains.each do |name| %>
+          <option value="<%= name %>"><%= name %></option>
+        <% end %>
+      </optgroup>
+      <optgroup label="Hops">
+        <% @hops.each do |name| %>
+          <option value="<%= name %>"><%= name %></option>
+        <% end %>
+      </optgroup>
+      <optgroup label="Yeast">
+        <% @yeast.each do |name| %>
+          <option value="<%= name %>"><%= name %></option>
+        <% end %>
+      </optgroup>
       </select>
       <input type="number" name="ingredients[amount][]" id="ingredient_amount<%= x %>" step=0.1 value=0.00>
       <select name="ingredients[measure][]" id="ingredient_measure<%= x %>">
