@@ -21,7 +21,19 @@ rake db:load
 ```
 This list of ingredients is sourced by the wonderful folks over at [Brew Cabin](https://www.brewcabin.com/malted-barley/). Check them out!
 
-Once that's loaded, we need to start the web server. Run:
+Once that's loaded, we need to set up a [session secret](https://martinfowler.com/articles/session-secret.html). Create a `.env` file:
+```
+touch .env
+```
+Then generate a random secret:
+```
+ruby -e "require 'securerandom'; puts SecureRandom.hex"
+```
+Paste the output of the above command into your `.env` file and set it to a `SESSION_SECRET` variable, *without quotes*, e.g.:
+```
+SESSION_SECRET=7b49a653d252d97eb156f7ee0409c5c8
+```
+Whew. Now, we can start the web server. Run:
 ```
 rackup
 ```

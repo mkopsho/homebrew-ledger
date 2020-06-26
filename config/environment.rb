@@ -4,7 +4,6 @@ require 'bundler/setup'
 Bundler.require(:default, ENV['SINATRA_ENV'])
 
 require 'dotenv/load'
-require 'sysrandom/securerandom'
 
 ActiveRecord::Base.establish_connection(
   :adapter => "sqlite3",
