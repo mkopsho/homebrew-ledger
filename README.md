@@ -29,7 +29,7 @@ Then generate a random secret:
 ```
 ruby -e "require 'securerandom'; puts SecureRandom.hex"
 ```
-Paste the output of the above command into your `.env` file and set it to a `SESSION_SECRET` variable, *without quotes*, e.g.:
+Paste the output of the above command into your `.env` file and assign it to a `SESSION_SECRET` variable, **without quotes**, e.g.:
 ```
 SESSION_SECRET=7b49a653d252d97eb156f7ee0409c5c8
 ```
