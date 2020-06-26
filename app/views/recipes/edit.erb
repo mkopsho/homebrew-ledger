@@ -8,11 +8,9 @@
     <label for="style"><strong><p>Style<a href="https://www.homebrewersassociation.org/from-the-director/2018-national-homebrew-competition-styles/">[*]</a>: </label>
       <input type="text" name="style" id="style" value="<%= @recipe.style %>"></p></strong>
     <label for="description"><strong><p>Description: </p></strong></label>
-      <textarea rows="4" cols="50" name="description" id="description" value="<%= @recipe.description %>"></textarea><br><br>
+      <textarea rows="4" cols="50" name="description" id="description"><%= @recipe.description %></textarea><br><br>
     <strong><p>Ingredients: </p></strong>
-      <!-- To do: preload and display a list of all available ingredients to user 
-      https://www.brewcabin.com/malted-barley/ -->
-      
+
       <% @ingredients.each do |ingredient| %>
         <input type="text" name="ingredient[name][]" id="ingredient_name" value=<%= ingredient.name %>>
         <input type="text" name="ingredient[quantity][]" id="ingredient_quantity" value="<%= ingredient.quantity %>">
