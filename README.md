@@ -11,17 +11,7 @@ Navigate to the `homebrew-ledger` directory and run:
 ```
 bundle install
 ```
-To initialize the database, run:
-```
-rake db:migrate
-```
-To load the database with some common beer ingredients, run:
-```
-rake db:load
-```
-This list of ingredients is sourced by the wonderful folks over at [Brew Cabin](https://www.brewcabin.com/malted-barley/). Check them out!
-
-Once that's loaded, we need to set up a [session secret](https://martinfowler.com/articles/session-secret.html). Create a `.env` file:
+We need to set up a [session secret](https://martinfowler.com/articles/session-secret.html). Create a `.env` file:
 ```
 touch .env
 ```
@@ -33,6 +23,16 @@ Paste the output of the above command into your `.env` file and assign it to a `
 ```
 SESSION_SECRET=7b49a653d252d97eb156f7ee0409c5c8
 ```
+After that, we can set up our database. To initialize the database, run:
+```
+rake db:migrate
+```
+To load the database with some common beer ingredients, run:
+```
+rake db:load
+```
+This list of ingredients is sourced by the wonderful folks over at [Brew Cabin](https://www.brewcabin.com/malted-barley/). Check them out!
+
 Whew. Now, we can start the web server. Run:
 ```
 rackup
