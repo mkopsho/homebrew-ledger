@@ -13,8 +13,8 @@
       <% x = 1 %>
       <% 10.times do %>
       Ingredient <%= x %>:
-      <select name="ingredients[name][]" id="ingredient_name<%= x %>">
-      <option disabled selected value> -- select an ingredient -- </option>
+      <select name="ingredients_attributes[][name]" id="ingredient_name<%= x %>">
+      <option selected value=""> -- select an ingredient -- </option>
       <optgroup label="Grains">
         <% @grains.each do |name| %>
           <option value="<%= name %>"><%= name %></option>
@@ -31,9 +31,9 @@
         <% end %>
       </optgroup>
       </select>
-      <input type="number" name="ingredients[amount][]" id="ingredient_amount<%= x %>" step=0.1 value=0.00>
-      <select name="ingredients[measure][]" id="ingredient_measure<%= x %>">
-        <option disabled selected value> -- select a measurement -- </option>
+      <input type="number" name="ingredients_attributes[][amount]" id="ingredient_amount<%= x %>" step=0.1 >
+      <select name="ingredients_attributes[][measure]" id="ingredient_measure<%= x %>">
+        <option selected value=""> -- select a measurement -- </option>
         <option value="lbs">lbs</option>
         <option value="oz">oz</option>
         <option value="kg">kg</option>

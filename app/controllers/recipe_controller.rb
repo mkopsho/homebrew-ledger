@@ -31,18 +31,19 @@ class RecipesController < ApplicationController
 
   post '/recipes' do
     if logged_in?
-      @recipe = Recipe.create(name: params[:name], description: params[:description], style: params[:style], is_public?: params[:is_public?], user: current_user)
+      @recipe = current_user.recipes.build(params)
+      # @recipe = Recipe.create(name: params[:name], description: params[:description], style: params[:style], is_public?: params[:is_public?], user: current_user)
 
-      names = params[:ingredients][:name]
-      amounts = params[:ingredients][:amount].reject(&:empty?) # Reject empty numbers from our form. Can I catch this in the form itself?
-      measures = params[:ingredients][:measure]
-      amounts = amounts.each_with_index.map { |element, index| element + measures[index].to_s } # Combine amounts and measurements arrays at same index.
+      # names = params[:ingredients][:name]
+      # amounts = params[:ingredients][:amount].reject(&:empty?) # Reject empty numbers from our form. Can I catch this in the form itself?
+      # measures = params[:ingredients][:measure]
+      # amounts = amounts.each_with_index.map { |element, index| element + measures[index].to_s } # Combine amounts and measurements arrays at same index.
 
-      count = 0
-      while count < names.length do
-        ingredient = Ingredient.create(name: names[count], quantity: amounts[count], recipe_id: @recipe.id)
-        count += 1
-      end
+      # count = 0
+      # while count < names.length do
+      #   ingredient = Ingredient.create(name: names[count], quantity: amounts[count], recipe_id: @recipe.id)
+      #   count += 1
+      # end
       
       if @recipe.save
         redirect "/recipes/#{@recipe.id}"
