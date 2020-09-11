@@ -44,5 +44,13 @@ If you'd like to change the code locally, run the server with `shotgun` rather t
 
 Pull requests are not only welcome, they're encouraged! For major changes, please open an issue first to discuss what you would like to change.
 
+* * *
+
+# Demo and Blog
+
+Demo: https://www.youtube.com/watch?v=o2BMZ_qS2Nc
+
+Blog: https://mkopsho.github.io/blog/sing-it-dino.html
+
 # License
 [MIT](./LICENSE)
