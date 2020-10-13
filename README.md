@@ -50,7 +50,7 @@ Pull requests are not only welcome, they're encouraged! For major changes, pleas
 
 Demo: https://www.youtube.com/watch?v=o2BMZ_qS2Nc
 
-Blog: https://mkopsho.github.io/blog/sing-it-dino.html
+Blog: https://kopsho.cafe/blog/sing-it-dino.html
 
 # License
 [MIT](./LICENSE)
